@@ -58,72 +58,66 @@ class LeaveSummary extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="container">
-          <div className="card title-bar">
-            Home/ <span className="blue">Dashboard</span>
+      <div>
+        <div className="card-row text-center">
+          <div className="card">
+            <div className="caption bg-blue01">P</div>
+            <h3>Privilege Leave</h3>
+            <p>
+              {this.state.availableLeaves
+                ? this.state.availableLeaves.privilegeLeave
+                : ""}
+            </p>
           </div>
-          <br />
-
-          <div className="card-row text-center">
-            <div className="card">
-              <div className="caption bg-blue01">P</div>
-              <h3>Privilege Leave</h3>
-              <p>
-                {this.state.availableLeaves
-                  ? this.state.availableLeaves.privilegeLeave
-                  : ""}
-              </p>
-            </div>
-            <div className="card">
-              <div className="caption bg-yellow01">C</div>
-              <h3>Casual Leave</h3>
-              <p>
-                {this.state.availableLeaves
-                  ? this.state.availableLeaves.casualLeave
-                  : ""}
-              </p>
-            </div>
-            <div className="card">
-              <div className="caption bg-blue02">F</div>
-              <h3>Floating Holiday</h3>
-              <p>
-                {this.state.availableLeaves
-                  ? this.state.availableLeaves.floatingHoliday
-                  : ""}
-              </p>
-            </div>
-            <div className="card">
-              <div className="caption bg-red01">S</div>
-              <h3>Sick Leave</h3>
-              <p>
-                {this.state.availableLeaves
-                  ? this.state.availableLeaves.sickLeave
-                  : ""}
-              </p>
-            </div>
+          <div className="card">
+            <div className="caption bg-yellow01">C</div>
+            <h3>Casual Leave</h3>
+            <p>
+              {this.state.availableLeaves
+                ? this.state.availableLeaves.casualLeave
+                : ""}
+            </p>
           </div>
-          <br />
+          <div className="card">
+            <div className="caption bg-blue02">F</div>
+            <h3>Floating Holiday</h3>
+            <p>
+              {this.state.availableLeaves
+                ? this.state.availableLeaves.floatingHoliday
+                : ""}
+            </p>
+          </div>
+          <div className="card">
+            <div className="caption bg-red01">S</div>
+            <h3>Sick Leave</h3>
+            <p>
+              {this.state.availableLeaves
+                ? this.state.availableLeaves.sickLeave
+                : ""}
+            </p>
+          </div>
+        </div>
+        <br />
 
-          <div className="card-row">
-            <div className="card">
-              <h3 className="text-left">Applied Leave(s)</h3>
-              <table className="text-center">
-                <thead>
-                  <tr>
-                    <th>Leave Type</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <th>From Session</th>
-                    <th>To Session</th>
-                    <th>From Time</th>
-                    <th>To Time</th>
-                    <th>Applied Day(s)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.appliedList
-                    ? this.state.appliedList.map((cellData, index) => (
+        <div className="card-row">
+          <div className="card">
+            <h3 className="text-left">Applied Leave(s)</h3>
+            <table className="text-center">
+              <thead>
+                <tr>
+                  <th>Leave Type</th>
+                  <th>From Date</th>
+                  <th>To Date</th>
+                  <th>From Session</th>
+                  <th>To Session</th>
+                  <th>From Time</th>
+                  <th>To Time</th>
+                  <th>Applied Day(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.appliedList
+                  ? this.state.appliedList.map((cellData, index) => (
                       <tr key={index}>
                         <td>
                           {cellData.leaveTypeDesc
@@ -135,56 +129,51 @@ class LeaveSummary extends React.Component {
                         <td>
                           {cellData.fromSession ? cellData.fromSession : "-"}
                         </td>
-                        <td>
-                          {cellData.toSession ? cellData.toSession : "-"}
-                        </td>
+                        <td>{cellData.toSession ? cellData.toSession : "-"}</td>
                         <td>{cellData.fromTime ? cellData.fromTime : "-"}</td>
                         <td>{cellData.toTime ? cellData.toTime : "-"}</td>
                         <td>
-                          {cellData.reqLeaveUnit
-                            ? cellData.reqLeaveUnit
-                            : "-"}
+                          {cellData.reqLeaveUnit ? cellData.reqLeaveUnit : "-"}
                         </td>
                       </tr>
                     ))
-                    : ""}
-                </tbody>
-              </table>
-            </div>
-            <div className="card">
-              <h3 className="text-left">Balance Leave(s)</h3>
-              <select>
-                <option>All</option>
-                {this.state.leavetypeList
-                  ? this.state.leavetypeList.map((item, index) => (
+                  : ""}
+              </tbody>
+            </table>
+          </div>
+          <div className="card">
+            <h3 className="text-left">Balance Leave(s)</h3>
+            <select>
+              <option>All</option>
+              {this.state.leavetypeList
+                ? this.state.leavetypeList.map((item, index) => (
                     <option key={index}>{item.leaveTypeLongDesc}</option>
                   ))
-                  : ""}
-              </select>
+                : ""}
+            </select>
 
-              <div className="chart">
-                <PieChart
-                  animation
-                  animationDuration={500}
-                  animationEasing="ease-out"
-                  center={[50, 50]}
-                  data={this.state.data}
-                  labelPosition={50}
-                  lengthAngle={360}
-                  lineWidth={35}
-                  paddingAngle={0}
-                  radius={40}
-                  rounded
-                  startAngle={0}
-                  viewBoxSize={[100, 100]}
-                  label={(data = this.state.data) => data.dataEntry.title}
-                  labelStyle={{
-                    fontSize: "7px",
-                    fontColor: "000",
-                    fontWeight: "normal"
-                  }}
-                />
-              </div>
+            <div className="chart">
+              <PieChart
+                animation
+                animationDuration={500}
+                animationEasing="ease-out"
+                center={[50, 50]}
+                data={this.state.data}
+                labelPosition={50}
+                lengthAngle={360}
+                lineWidth={35}
+                paddingAngle={0}
+                radius={40}
+                rounded
+                startAngle={0}
+                viewBoxSize={[100, 100]}
+                label={(data = this.state.data) => data.dataEntry.title}
+                labelStyle={{
+                  fontSize: "7px",
+                  fontColor: "000",
+                  fontWeight: "normal"
+                }}
+              />
             </div>
           </div>
         </div>

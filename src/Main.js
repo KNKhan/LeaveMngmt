@@ -5,6 +5,7 @@ import { PieChart } from "react-minimal-pie-chart";
 import Summary from "./leave/summary";
 import Footer from "./footer/Footer";
 import { Link } from 'react-router-dom';
+import Breadcrumb from "./breadcrumb/Breadcrumb";
 
 class Main extends React.Component {
   constructor(props) {
@@ -28,7 +29,13 @@ class Main extends React.Component {
             </li>
           </ul>
         </nav>
-        <Summary />
+        <div className="container-fluid">
+          <div className="container">
+            <Breadcrumb />
+            <br />
+            <Summary />
+          </div>
+        </div>
         <Footer />
       </div>
     );
