@@ -1,0 +1,143 @@
+body {
+  background-color: #ededee;
+  color: #4e4e4e;
+  font-size: 14px;
+}
+
+nav {
+  position: fixed;
+  width: 20%;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.container-fluid {
+  display: block;
+}
+.container {
+  width: 76%;
+  float: right;
+  padding: 2%;
+}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  width: -webkit-fill-available;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+.card h3 {
+  margin: 0;
+  background: #eef3fb;
+  padding: 10px;
+  color: #345da0;
+  font-size: 15px;
+  text-align: right;
+}
+.card p {
+  font-size: 26px;
+}
+.card .caption {
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: #fff;
+  border-radius: 3px;
+  left: 10px;
+  top: -15px;
+  position: absolute;
+}
+.card-row .card {
+  margin-right: 30px;
+}
+.card-row .card:last-child {
+  margin-right: 10px;
+}
+.title-bar {
+  padding: 20px;
+}
+.blue {
+  color: #4285f4 !important;
+}
+
+/*-- bg color --*/
+.bg-blue01 {
+  background-color: #29b6f6;
+}
+.bg-blue02 {
+  background-color: #4285f4;
+}
+.bg-yellow01 {
+  background-color: #fb3;
+}
+.bg-red01 {
+  background-color: #ff5252;
+}
+/*-- bg color --*/
+
+/*-- text align --*/
+.text-center {
+  text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
+}
+/*-- text align --*/
+
+/*-- table stylings --*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1px;
+}
+table thead tr th,
+table tbody tr td {
+  padding: 10px;
+}
+table thead tr th {
+  color: #345da0;
+  border-bottom: solid 1px #d6d6d6;
+}
+/*-- table stylings --*/
+
+select {
+  margin-top: 5px;
+  border: solid 1px #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.chart {
+  width: 50%;
+  /* height: 200px; */
+  margin: 0 auto;
+  display: table;
+}
+
+nav h3 {
+  color: #3d6fcc;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav ul li {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  color: #1f3861;
+}
+nav li.active {
+  border-left: solid 2px #4e87e4;
+  background: #eaf0fb;
+}
