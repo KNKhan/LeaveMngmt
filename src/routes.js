@@ -4,13 +4,17 @@ import Main from './Main';
 import ManageLeaves from './manage-leaves/manage-leaves';
 import ApproveLeaves from './approve-leaves/approve-leaves';
 import Settings from './settings/settings';
+import ManageTimesheets from './manage-timesheets/manage-timesheets';
+import Cookies from 'universal-cookie';
+import Login from './login/login';
 
 class Routes extends React.Component {
     render() {
+        const cookies = new Cookies();
         return (
             <Switch>
                 <Route exact path="/">
-                    <Main />
+                    {cookies.get('userName') ? <Login /> : <Main />}
                 </Route>
                 <Route path="/manage-leaves">
                     <ManageLeaves />
@@ -20,6 +24,9 @@ class Routes extends React.Component {
                 </Route>
                 <Route path="/settings">
                     <Settings />
+                </Route>
+                <Route path="/manage-timesheets">
+                    <ManageTimesheets />
                 </Route>
             </Switch>
         );

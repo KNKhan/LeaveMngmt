@@ -101,7 +101,7 @@ class LeaveSummary extends React.Component {
 
         <div className="card-row">
           <div className="card">
-            <h3 className="text-left">Applied Leave(s)</h3>
+            <h3 className="text-left">Applied Leave(s) <span className="card-plus-icon">+</span></h3>
             <table className="text-center">
               <thead>
                 <tr>

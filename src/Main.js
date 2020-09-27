@@ -21,10 +21,16 @@ class Main extends React.Component {
               <h3>Leave Management</h3>
               <ul>
                 {/* <li className="active">Summary</li> */}
-                <li><Link to="/" className="active">Summary</Link></li>
-                <li><Link to="/manage-leaves">Manage Leaves</Link></li>
+                <li className="active"><Link to="/">Summary</Link></li>
+                <li><Link to="/manage-leaves">Create Leaves</Link></li>
                 <li><Link to="/approve-leaves">Approve Leaves</Link></li>
                 <li><Link to="/settings">Settings</Link></li>
+              </ul>
+            </li>
+            <li>
+              <h3>Timesheet Management</h3>
+              <ul>
+                <li className="active"><Link to="/manage-timesheets">Manage Timesheet</Link></li>
               </ul>
             </li>
           </ul>
@@ -32,9 +38,12 @@ class Main extends React.Component {
         <div className="container-fluid">
           <div className="container">
             <Breadcrumb />
+            <div className="Employee-details title-bar">Employee-details</div>
             <br />
             <Summary />
+           
           </div>
+         
         </div>
         <Footer />
       </div>
