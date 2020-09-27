@@ -14,7 +14,10 @@ nav {
 .container-fluid {
   display: block;
 }
-.container {
+.container,
+.manageLeaves,
+.approveLeaves,
+.manageTimesheets {
   width: 76%;
   float: right;
   padding: 2%;
@@ -142,27 +145,27 @@ nav li.active {
   background: #eaf0fb;
 }
 /* LM-UI */
-nav ul li a{
+nav ul li a {
   text-decoration: none;
   color: #1f3861;
 }
-.Employee-details{
+.Employee-details {
   text-align: right;
   font-weight: 600;
 }
-.manageLeaves-lable{
+.manageLeaves-lable {
   font-size: 20px;
   padding-right: 10px;
   display: inline-block;
   width: 140px;
 }
-.manageLeaves-input{
+.manageLeaves-input {
   padding: 4px 10px;
   font-size: 16px;
   display: inline-block;
   width: 25%;
 }
-.card-plus-icon{
+.card-plus-icon {
   display: inline-block;
   float: right;
   font-weight: bold;

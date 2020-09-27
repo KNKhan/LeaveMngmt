@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
+import Navbar from '../navbar/navbar';
 
 class ManageLeaves extends React.Component {
     constructor(props) {
@@ -215,11 +216,14 @@ class ManageLeaves extends React.Component {
 
     render() {
         return (
-            <div className="manageLeaves">
-                {this.state.isCreateClicked ? this.renderCreateLeaveSection() : ""}
-                {this.renderAppliedLeavesSection()}
-                <button className="btn btn-primary" onClick={this.createClicked}>Create</button>
-            </div >
+            <React.Fragment>
+                <Navbar />
+                <div className="manageLeaves">
+                    {this.state.isCreateClicked ? this.renderCreateLeaveSection() : ""}
+                    {this.renderAppliedLeavesSection()}
+                    <button className="btn btn-primary" onClick={this.createClicked}>Create</button>
+                </div>
+            </React.Fragment>
         );
     }
 }

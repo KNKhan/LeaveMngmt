@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../navbar/navbar';
 
 class ManageTimesheets extends React.Component {
 
@@ -8,7 +9,10 @@ class ManageTimesheets extends React.Component {
 
     render() {
         return (
-            <div className="manageTimesheets"></div>
+            <React.Fragment>
+                <Navbar />
+                <div className="manageTimesheets"></div>
+            </React.Fragment>
         );
     }
 }
