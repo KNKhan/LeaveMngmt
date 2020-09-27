@@ -7,6 +7,7 @@ import Footer from "./footer/Footer";
 import Breadcrumb from "./breadcrumb/Breadcrumb";
 import Cookies from "universal-cookie";
 import Navbar from "./navbar/navbar";
+import { Notifications } from "react-push-notification";
 
 class Main extends React.Component {
 
@@ -23,6 +24,7 @@ class Main extends React.Component {
           </div>
         </div>
         <Footer />
+        <Notifications />
       </div>
     );
   }
