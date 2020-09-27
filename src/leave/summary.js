@@ -33,16 +33,13 @@ class LeaveSummary extends React.Component {
   }
 
   componentDidMount() {
-    // axios.get(`http://192.168.20.151:8080/oneprodapterp/employeeAvailableLeave/3393`)
-    // .then(res => {
-    //   const availableLeaves = res.data;
-    //   this.setState({ availableLeaves },()=>console.log('availableLeaves', this.state.availableLeaves));
-    // });
+    axios.get(`http://192.168.20.151:8080/oneprodapterp/leavebalance/3393`)
+      .then(res => {
+        const availableLeaves = res.data.data;
+        this.setState({ availableLeaves }, () => console.log('availableLeaves', this.state.availableLeaves));
+      });
 
-    axios
-      .get(
-        `http://192.168.20.151:8080/oneprodapterp/employeeLeaveList/khadar.a/3393/khadar`
-      )
+    axios.get(`http://192.168.20.151:8080/oneprodapterp/employeeleaves/khadar.a/3393/Khadar%20Navaz%20Khan`)
       .then(res => {
         const appliedList = res.data;
         this.setState({ appliedList }, () =>
@@ -50,12 +47,11 @@ class LeaveSummary extends React.Component {
         );
       });
 
-    axios
-      .get(`http://192.168.20.151:8080/oneprodapterp/leaveTypeList`)
+    axios.get(`http://192.168.20.151:8080/oneprodapterp/leavetype`)
       .then(res => {
-        const leavetypeList = res.data;
-        this.setState({ leavetypeList }, () =>
-          console.log("leavetypeList", this.state.leavetypeList)
+        const leavetype = res.data;
+        this.setState({ leavetype }, () =>
+          console.log("leavetype", this.state.leavetype)
         );
       });
   }
@@ -69,7 +65,7 @@ class LeaveSummary extends React.Component {
             <h3>Privilege Leave</h3>
             <p>
               {this.state.availableLeaves
-                ? this.state.availableLeaves.PrivilegeLeave
+                ? this.state.availableLeaves.privilegeLeave
                 : ""}
             </p>
           </div>
@@ -78,7 +74,7 @@ class LeaveSummary extends React.Component {
             <h3>Casual Leave</h3>
             <p>
               {this.state.availableLeaves
-                ? this.state.availableLeaves.CasualLeave
+                ? this.state.availableLeaves.casualLeave
                 : ""}
             </p>
           </div>
@@ -87,7 +83,7 @@ class LeaveSummary extends React.Component {
             <h3>Floating Holiday</h3>
             <p>
               {this.state.availableLeaves
-                ? this.state.availableLeaves.FloatingHoliday
+                ? this.state.availableLeaves.floatingHoliday
                 : ""}
             </p>
           </div>
@@ -96,7 +92,7 @@ class LeaveSummary extends React.Component {
             <h3>Sick Leave</h3>
             <p>
               {this.state.availableLeaves
-                ? this.state.availableLeaves.SickLeave
+                ? this.state.availableLeaves.sickLeave
                 : ""}
             </p>
           </div>
