@@ -141,3 +141,31 @@ nav li.active {
   border-left: solid 2px #4e87e4;
   background: #eaf0fb;
 }
+/* LM-UI */
+nav ul li a{
+  text-decoration: none;
+  color: #1f3861;
+}
+.Employee-details{
+  text-align: right;
+  font-weight: 600;
+}
+.manageLeaves-lable{
+  font-size: 20px;
+  padding-right: 10px;
+  display: inline-block;
+  width: 140px;
+}
+.manageLeaves-input{
+  padding: 4px 10px;
+  font-size: 16px;
+  display: inline-block;
+  width: 25%;
+}
+.card-plus-icon{
+  display: inline-block;
+  float: right;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: -5px;
+}
