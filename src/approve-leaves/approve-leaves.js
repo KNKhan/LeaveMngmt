@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Navbar from '../navbar/navbar';
+import './approve-leaves.css';
+import Breadcrumb from '../breadcrumb/Breadcrumb';
+import Footer from '../footer/Footer';
 
 class ApproveLeaves extends React.Component {
     constructor(props) {
@@ -8,6 +11,8 @@ class ApproveLeaves extends React.Component {
         this.state = {
             Approvername: "MARAMVEERA.R",
             data: [],
+            leaveCount: 0,
+            breadcrumb: 'Approve Leaves'
         };
     }
 
@@ -15,8 +20,9 @@ class ApproveLeaves extends React.Component {
         axios.get(`http://192.168.20.151:8080/oneprodapterp/approvalpendingleaves/MARAMVEERA.R`)
             .then((res) => {
                 const leavestoapprove = res.data;
-                const count = res.length;
-                this.setState({ leavestoapprove }, () =>
+                let leaveCount = res.data.length;
+                // const count = res.length;
+                this.setState({ leavestoapprove, leaveCount }, () =>
                     console.log("leavestoapprove", this.state.leavestoapprove)
                 );
             });
@@ -57,18 +63,17 @@ class ApproveLeaves extends React.Component {
             .then(res => console.log(res.data));
     };
 
-
-
     render() {
         return (
-            <React.Fragment>
+            <div className="approveLeaves">
                 <Navbar />
-                <div>
-                    <div className="container-fluid">
-                        <div className="container">
-                            <div className="card-row">
-                                <div className="card">
-                                    <h3 className="text-left">Leave(s) details {}</h3>
+                <div className="container-fluid">
+                    <div className="container">
+                        <Breadcrumb page={this.state.breadcrumb} />
+                        <div className="card-row">
+                            <div className="card">
+                                <h3 className="text-left">Leave(s) details [Count - {this.state.leaveCount}]</h3>
+                                <div className="tableDiv">
                                     <table className="text-center">
                                         <thead>
                                             <tr>
@@ -113,27 +118,40 @@ class ApproveLeaves extends React.Component {
                                                                 : "-"}
                                                         </td>
                                                         <td>
-                                                            <button
-                                                                onClick={() => this.handleApproveLeave(cellData)}
-                                                            >
-                                                                Approve
-                          </button>
+                                                        <button
+                                                            onClick={() => {
+                                                            if (
+                                                                window.confirm(
+                                                                "Are you sure to approve this leave?"
+                                                                )
+                                                            ) {
+                                                                this.handleApproveLeave(cellData);
+                                                            }
+                                                            }}
+                                                        >
+                                                         <i className="fa fa-check"></i>
+                                                        </button>
+                                                            {/* <button onClick={() => this.handleApproveLeave(cellData)}>
+                                                                <i className="fa fa-check"></i>
+                                                            </button> */}
                                                         </td>
                                                         <td>
-                                                            <button onClick={() => this.RejectLeave(cellData)}>Reject</button>
-                                                            {/* <button
-                            onClick={() => {
-                              if (
-                                window.confirm(
-                                  "Are you sure to delete this record?"
-                                )
-                              ) {
-                                this.RejectLeave(cellData);
-                              }
-                            }}
-                          >
-                            Reject
-                          </button> */}
+                                                            {/* <button onClick={() => this.RejectLeave(cellData)}>
+                                                                <i className="fa fa-times"></i>
+                                                            </button> */}
+                                                            <button
+                                                            onClick={() => {
+                                                            if (
+                                                                window.confirm(
+                                                                "Are you sure to reject this leave?"
+                                                                )
+                                                            ) {
+                                                                this.RejectLeave(cellData);
+                                                            }
+                                                            }}
+                                                        >
+                                                           <i className="fa fa-times"></i>
+                                                        </button>
                                                         </td>
                                                     </tr>
                                                 ))
@@ -145,7 +163,8 @@ class ApproveLeaves extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+                <Footer />
+            </div>
         );
     }
 }

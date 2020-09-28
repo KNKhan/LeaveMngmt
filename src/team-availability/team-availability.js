@@ -1,27 +1,30 @@
 import React from 'react';
 import Breadcrumb from '../breadcrumb/Breadcrumb';
+import Footer from '../footer/Footer';
 import Navbar from '../navbar/navbar';
 
-class Settings extends React.Component {
+class TeamAvailability extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            breadcrumb: 'Settings'
+            breadcrumb: 'Team Availability'
         };
     }
 
     render() {
         return (
-            <div className="settings">
+            <div className="teamAvailability">
                 <Navbar />
                 <div className="container-fluid">
                     <div className="container">
                         <Breadcrumb page={this.state.breadcrumb} />
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default Settings;
+export default TeamAvailability;

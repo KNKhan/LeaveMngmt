@@ -14,10 +14,7 @@ nav {
 .container-fluid {
   display: block;
 }
-.container,
-.manageLeaves,
-.approveLeaves,
-.manageTimesheets {
+.container {
   width: 80%;
   float: right;
   padding: 2%;
@@ -134,30 +131,27 @@ nav ul {
   padding: 0;
   margin: 0;
 }
-nav ul li {
+nav  ul  li {
   cursor: pointer;
   padding: 10px 15px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   color: #1f3861;
 }
-nav li.active {
+nav  ul  li  ul  li  a.active {
   border-left: solid 2px #4e87e4;
   background: #eaf0fb;
 }
 /* LM-UI */
-nav ul li a {
+nav  ul  li  ul  li  a {
   text-decoration: none;
   color: #1f3861;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: 7px;
 }
 .Employee-details {
   text-align: right;
   font-weight: 600;
-}
-.manageLeaves-lable {
-  font-size: 20px;
-  padding-right: 10px;
-  display: inline-block;
-  width: 140px;
 }
 .manageLeaves-input {
   padding: 4px 10px;
@@ -171,4 +165,130 @@ nav ul li a {
   font-weight: bold;
   font-size: 20px;
   margin-top: -5px;
+}
+.logo{
+  text-align: center;
+  padding: 10px;
+}
+.logo img{
+  width: 150px;
+}
+.user-details{
+  padding: 20px;
+}
+.user-name, .user-emp-id{
+  padding: 10px 0px;
+}
+.user-img{
+  width: 50px;
+  height: 50px;
+  border: 1px solid #4e87e4;
+  margin: 5px auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+}
+.user-img-mobile{
+  display: none;
+}
+.close-icon{
+  display: none;
+}
+@media screen and (max-width: 768px){
+  .logo img {
+    width: 100%;
+}
+  .container > .card{
+    margin: 0;
+  }
+  .card {
+    margin: 30px 0 0;
+  }
+  .card-row {
+    display: block;
+  }
+  .card-row .card {
+    margin-right: 0px;
+  }
+  .card-row .card:last-child {
+    margin-right: 0px;
+  }
+  table thead tr th, table tbody tr td {
+    padding: 8px;
+  }
+}
+@media screen and (max-width: 767px){
+  .logo img {
+    width: 150px;
+  }
+  .logo{
+    text-align: left;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+  }
+  .user-img-mobile{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #4e87e4;
+    border-radius: 50%;
+    float: right;
+    margin-right: 30px;
+  }
+  .user-details{
+    display: none;
+  }
+  nav {
+    position: unset; 
+    width: 100%;
+    height: auto;
+  }
+  .container {
+    width: 100%;
+    float: none;
+    padding: 15px;
+  }
+  .card-table-body{
+    overflow-x: auto;
+  }
+  .card-table-section{
+    table-layout: fixed;
+    width: 500px;
+  }
+  .hamburger-icon::before{
+    content:'\2630';
+    position: absolute;
+    float: right;
+    right: 20px;
+    padding-top: 8px;
+    font-size: 20px;
+  }
+  .side-nav-mobile{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background:white;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .side-nav-mobile.active{
+    display: block;
+  }
+  .close-icon{
+    display: inline-block;
+    float: right;
+    border: 1px solid gray;
+    padding: 2px 4px;
+    border-radius: 50%;
+    font-size: 15px;
+    color: gray;
+    font-weight: 300;
+  }
 }

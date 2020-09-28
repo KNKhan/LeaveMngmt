@@ -33,13 +33,13 @@ class LeaveSummary extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://192.168.20.151:8080/oneprodapterp/leavebalance/3393`)
+    axios.get(`http://192.168.20.151:8080/oneprodapterp/leavebalance/2269`)
       .then(res => {
         const availableLeaves = res.data.data;
         this.setState({ availableLeaves }, () => console.log('availableLeaves', this.state.availableLeaves));
       });
 
-    axios.get(`http://192.168.20.151:8080/oneprodapterp/employeeleaves/khadar.a/3393/Khadar%20Navaz%20Khan`)
+    axios.get(`http://192.168.20.151:8080/oneprodapterp/employeeleaves/revathi.g/2269/Revathi%20G`)
       .then(res => {
         const appliedList = res.data;
         this.setState({ appliedList }, () =>
@@ -100,9 +100,9 @@ class LeaveSummary extends React.Component {
         <br />
 
         <div className="card-row">
-          <div className="card">
+          <div className="card card-table-body">
             <h3 className="text-left">Applied Leave(s) <span className="card-plus-icon">+</span></h3>
-            <table className="text-center">
+            <table className="text-center card-table-section">
               <thead>
                 <tr>
                   <th>Leave Type</th>

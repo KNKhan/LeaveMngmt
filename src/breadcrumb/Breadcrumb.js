@@ -1,9 +1,9 @@
 import React from "react";
 
-function Breadcrumb() {
+function Breadcrumb(props) {
   return (
     <div className="card title-bar">
-      Home/ <span className="blue">Dashboard</span>
+      Home/ <span className="blue">{props.page}</span>
     </div>
   );
 }
