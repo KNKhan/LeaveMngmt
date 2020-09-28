@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Navbar from '../navbar/navbar';
 
 class ApproveLeaves extends React.Component {
     constructor(props) {
@@ -60,66 +61,67 @@ class ApproveLeaves extends React.Component {
 
     render() {
         return (
-            <div>
-
-                <div className="container-fluid">
-                    <div className="container">
-                        <div className="card-row">
-                            <div className="card">
-                                <h3 className="text-left">Leave(s) details {}</h3>
-                                <table className="text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee Name</th>
-                                            <th>From Date</th>
-                                            <th>To Date</th>
-                                            <th>From Session</th>
-                                            <th>To Session</th>
-                                            <th>From Time</th>
-                                            <th>To Time</th>
-                                            <th>Applied Day(s)</th>
-                                            <th>Reason</th>
-                                            <th>Leave Status</th>
-                                            <th> </th>
-                                            <th> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.state.leavestoapprove
-                                            ? this.state.leavestoapprove.map((cellData, index) => (
-                                                <tr key={index}>
-                                                    <td>
-                                                        {cellData.employeeName ? cellData.employeeName : "-"}
-                                                    </td>
-                                                    <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
-                                                    <td>{cellData.toDate ? cellData.toDate : "-"}</td>
-                                                    <td>
-                                                        {cellData.fromSession ? cellData.fromSession : "-"}
-                                                    </td>
-                                                    <td>{cellData.toSession ? cellData.toSession : "-"}</td>
-                                                    <td>{cellData.timeFrom ? cellData.timeFrom : "-"}</td>
-                                                    <td>{cellData.timeTo ? cellData.timeTo : "-"}</td>
-                                                    <td>
-                                                        {cellData.reqLeaveUnits ? cellData.reqLeaveUnits : "-"}
-                                                    </td>
-                                                    <td>
-                                                        {cellData.leaveReason ? cellData.leaveReason : "-"}
-                                                    </td>
-                                                    <td>
-                                                        {cellData.applicationStatus
-                                                            ? cellData.applicationStatus
-                                                            : "-"}
-                                                    </td>
-                                                    <td>
-                                                        <button
-                                                            onClick={() => this.handleApproveLeave(cellData)}
-                                                        >
-                                                            Approve
+            <React.Fragment>
+                <Navbar />
+                <div>
+                    <div className="container-fluid">
+                        <div className="container">
+                            <div className="card-row">
+                                <div className="card">
+                                    <h3 className="text-left">Leave(s) details {}</h3>
+                                    <table className="text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee Name</th>
+                                                <th>From Date</th>
+                                                <th>To Date</th>
+                                                <th>From Session</th>
+                                                <th>To Session</th>
+                                                <th>From Time</th>
+                                                <th>To Time</th>
+                                                <th>Applied Day(s)</th>
+                                                <th>Reason</th>
+                                                <th>Leave Status</th>
+                                                <th> </th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.leavestoapprove
+                                                ? this.state.leavestoapprove.map((cellData, index) => (
+                                                    <tr key={index}>
+                                                        <td>
+                                                            {cellData.employeeName ? cellData.employeeName : "-"}
+                                                        </td>
+                                                        <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
+                                                        <td>{cellData.toDate ? cellData.toDate : "-"}</td>
+                                                        <td>
+                                                            {cellData.fromSession ? cellData.fromSession : "-"}
+                                                        </td>
+                                                        <td>{cellData.toSession ? cellData.toSession : "-"}</td>
+                                                        <td>{cellData.timeFrom ? cellData.timeFrom : "-"}</td>
+                                                        <td>{cellData.timeTo ? cellData.timeTo : "-"}</td>
+                                                        <td>
+                                                            {cellData.reqLeaveUnits ? cellData.reqLeaveUnits : "-"}
+                                                        </td>
+                                                        <td>
+                                                            {cellData.leaveReason ? cellData.leaveReason : "-"}
+                                                        </td>
+                                                        <td>
+                                                            {cellData.applicationStatus
+                                                                ? cellData.applicationStatus
+                                                                : "-"}
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                onClick={() => this.handleApproveLeave(cellData)}
+                                                            >
+                                                                Approve
                           </button>
-                                                    </td>
-                                                    <td>
-                                                        <button onClick={() => this.RejectLeave(cellData)}>Reject</button>
-                                                        {/* <button
+                                                        </td>
+                                                        <td>
+                                                            <button onClick={() => this.RejectLeave(cellData)}>Reject</button>
+                                                            {/* <button
                             onClick={() => {
                               if (
                                 window.confirm(
@@ -132,18 +134,18 @@ class ApproveLeaves extends React.Component {
                           >
                             Reject
                           </button> */}
-                                                    </td>
-                                                </tr>
-                                            ))
-                                            : ""}
-                                    </tbody>
-                                </table>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                                : ""}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
+            </React.Fragment>
         );
     }
 }

@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
+import Navbar from '../navbar/navbar';
+import addNotification from 'react-push-notification';
 
 class ManageLeaves extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isCreateClicked: false,
+            isUpdateClicked: false,
             leaveTypes: [],
             leaveFrom: new Date(),
             leaveTo: new Date(),
@@ -53,11 +56,11 @@ class ManageLeaves extends React.Component {
                         <h2>Leave Details</h2>
                         <form>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">Name:</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">Name:</label>
                                 <input type="text" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
-                                <label for="leave-type" className="manageLeaves-lable">Leave Type :</label>
+                                <label htmlFor="leave-type" className="manageLeaves-lable">Leave Type :</label>
                                 <select className="manageLeaves-input" onChange={this.handleLeaveTypeChange}>
                                     {this.state.leaveTypes.map((leaveType, index) => {
                                         return <option key={index} value={leaveType.leaveTypeCode}>{leaveType.leaveTypeName}</option>;
@@ -65,35 +68,35 @@ class ManageLeaves extends React.Component {
                                 </select>
                             </div>
                             <div className="title-bar">
-                                <label for="leave-type" className="manageLeaves-lable">Leave Reason :</label>
+                                <label htmlFor="leave-type" className="manageLeaves-lable">Leave Reason :</label>
                                 <input type="text" className="manageLeaves-input" placeholder="Leave Reason" value={this.state.leaveReason} onChange={this.handleLeaveReasonInput} />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">From Date :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">From Date :</label>
                                 <input type="date" className="manageLeaves-input" value={this.state.leaveFrom.toISOString().split('T')[0]} onChange={this.handleLeaveFromChange} />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">To Date :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">To Date :</label>
                                 <input type="date" className="manageLeaves-input" value={this.state.leaveTo.toISOString().split('T')[0]} onChange={this.handleLeaveToChange} />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">From Session :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">From Session :</label>
                                 <input type="date" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">To Session :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">To Session :</label>
                                 <input type="date" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">From Time :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">From Time :</label>
                                 <input type="time" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">To Time :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">To Time :</label>
                                 <input type="time" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
-                                <label for="fname" className="manageLeaves-lable">Applied Days :</label>
+                                <label htmlFor="fname" className="manageLeaves-lable">Applied Days :</label>
                                 <input type="date" className="manageLeaves-input" />
                             </div>
                             <div className="title-bar">
@@ -139,7 +142,7 @@ class ManageLeaves extends React.Component {
                                     <button className="btn btn-primary" onClick={(e) => this.editLeaveClicked(e, cellData)}>
                                         <i className="fa fa-pencil"></i>
                                     </button>
-                                    <button className="btn btn-danger">
+                                    <button className="btn btn-danger" onClick={(e) => this.deleteLeaveClicked(e, cellData)}>
                                         <i className="fa fa-trash"></i>
                                     </button>
                                 </td>
@@ -160,7 +163,11 @@ class ManageLeaves extends React.Component {
             case 'Floating Holiday': leaveType = 'FH'; break;
             default: leaveType = 'LWP';
         }
-        this.setState({ isCreateClicked: true, leaveType, leaveFrom: new Date(leaveDetails.fromDate), leaveTo: new Date(leaveDetails.toDate) });
+        this.setState({ isUpdateClicked: true, leaveType, leaveFrom: new Date(leaveDetails.fromDate), leaveTo: new Date(leaveDetails.toDate) });
+    };
+
+    deleteLeaveClicked = (e, leaveDetails) => {
+
     };
 
     handleLeaveTypeChange = (e, leaveTypeCode = '') => {
@@ -205,8 +212,26 @@ class ManageLeaves extends React.Component {
             "toSession": "WDAY",
             "holidayWorkedDate": "01/01/1900"
         };
-        axios.post('http://192.168.20.151:8080/oneprodapterp/createleave', requestBody)
-            .then(res => console.log(res.data));
+        if (this.state.isCreateClicked)
+            axios.post('http://192.168.20.151:8080/oneprodapterp/createleave', requestBody)
+                .then(res => {
+                    addNotification({
+                        title: 'Leave Request Submitted',
+                        subtitle: requestBody.leaveFrom - requestBody.leaveTo,
+                        message: 'Your request for leave has been submitted to your manager for approval.',
+                        theme: 'green',
+                        native: true
+                    });
+                });
+        else if (this.state.isUpdateClicked) {
+            requestBody.userName = "KHADAR.A";
+            requestBody.appNumber = 0;
+            requestBody.appStatus = "";
+            requestBody.balanceUnit = requestBody.balanceUnits;
+            requestBody.reqDate = requestBody.notifiedDate;
+            axios.post('http://192.168.20.151:8080/oneprodapterp/createleave', requestBody)
+                .then(res => console.log(res.data));
+        }
     };
 
     createClicked = () => {
@@ -215,11 +240,14 @@ class ManageLeaves extends React.Component {
 
     render() {
         return (
-            <div className="manageLeaves">
-                {this.state.isCreateClicked ? this.renderCreateLeaveSection() : ""}
-                {this.renderAppliedLeavesSection()}
-                <button className="btn btn-primary" onClick={this.createClicked}>Create</button>
-            </div >
+            <React.Fragment>
+                <Navbar />
+                <div className="manageLeaves">
+                    {this.state.isCreateClicked ? this.renderCreateLeaveSection() : ""}
+                    {!this.state.isCreateClicked ? this.renderAppliedLeavesSection() : ""}
+                    <button className="btn btn-primary" onClick={this.createClicked}>Create</button>
+                </div>
+            </React.Fragment>
         );
     }
 }

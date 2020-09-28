@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Main from './Main';
 import ManageLeaves from './manage-leaves/manage-leaves';
 import ApproveLeaves from './approve-leaves/approve-leaves';
@@ -9,12 +9,21 @@ import Cookies from 'universal-cookie';
 import Login from './login/login';
 
 class Routes extends React.Component {
-    render() {
+
+    componentDidMount() {
         const cookies = new Cookies();
+        if (!cookies.get('userName'))
+            this.props.history.push('/login');
+    }
+
+    render() {
         return (
             <Switch>
                 <Route exact path="/">
-                    {cookies.get('userName') ? <Login /> : <Main />}
+                    <Main />
+                </Route>
+                <Route path="/login">
+                    <Login />
                 </Route>
                 <Route path="/manage-leaves">
                     <ManageLeaves />
@@ -33,4 +42,4 @@ class Routes extends React.Component {
     }
 }
 
-export default Routes;
+export default withRouter(Routes);
