@@ -102,44 +102,46 @@ class LeaveSummary extends React.Component {
         <div className="card-row">
           <div className="card card-table-body">
             <h3 className="text-left">Applied Leave(s) <span className="card-plus-icon">+</span></h3>
-            <table className="text-center card-table-section">
-              <thead>
-                <tr>
-                  <th>Leave Type</th>
-                  <th>From Date</th>
-                  <th>To Date</th>
-                  <th>From Session</th>
-                  <th>To Session</th>
-                  <th>From Time</th>
-                  <th>To Time</th>
-                  <th>Applied Day(s)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.appliedList
-                  ? this.state.appliedList.map((cellData, index) => (
-                      <tr key={index}>
-                        <td>
-                          {cellData.leaveTypeDesc
-                            ? cellData.leaveTypeDesc
-                            : "-"}
-                        </td>
-                        <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
-                        <td>{cellData.toDate ? cellData.toDate : "-"}</td>
-                        <td>
-                          {cellData.fromSession ? cellData.fromSession : "-"}
-                        </td>
-                        <td>{cellData.toSession ? cellData.toSession : "-"}</td>
-                        <td>{cellData.fromTime ? cellData.fromTime : "-"}</td>
-                        <td>{cellData.toTime ? cellData.toTime : "-"}</td>
-                        <td>
-                          {cellData.reqLeaveUnit ? cellData.reqLeaveUnit : "-"}
-                        </td>
-                      </tr>
-                    ))
-                  : ""}
-              </tbody>
+            <div className="heightScroll">
+              <table className="text-center card-table-section">
+                <thead>
+                  <tr>
+                    <th>Leave Type</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>From Session</th>
+                    <th>To Session</th>
+                    <th>From Time</th>
+                    <th>To Time</th>
+                    <th>Applied Day(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.appliedList
+                    ? this.state.appliedList.map((cellData, index) => (
+                        <tr key={index}>
+                          <td>
+                            {cellData.leaveTypeDesc
+                              ? cellData.leaveTypeDesc
+                              : "-"}
+                          </td>
+                          <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
+                          <td>{cellData.toDate ? cellData.toDate : "-"}</td>
+                          <td>
+                            {cellData.fromSession ? cellData.fromSession : "-"}
+                          </td>
+                          <td>{cellData.toSession ? cellData.toSession : "-"}</td>
+                          <td>{cellData.fromTime ? cellData.fromTime : "-"}</td>
+                          <td>{cellData.toTime ? cellData.toTime : "-"}</td>
+                          <td>
+                            {cellData.reqLeaveUnit ? cellData.reqLeaveUnit : "-"}
+                          </td>
+                        </tr>
+                      ))
+                    : ""}
+                </tbody>              
             </table>
+          </div>
           </div>
           <div className="card">
             <h3 className="text-left">Balance Leave(s)</h3>

@@ -24,7 +24,6 @@ class Main extends React.Component {
         <Navbar />
         <div className="container-fluid">
           <div className="container">
-            <div className="Employee-details title-bar">Employee-details</div>
             <Breadcrumb page={this.state.breadcrumb} />
             <br />
             <Summary />
