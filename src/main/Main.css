@@ -1,7 +1,7 @@
 body {
   background-color: #ededee;
   color: #4e4e4e;
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 nav {
@@ -34,6 +34,10 @@ nav {
   margin: 10px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   position: relative;
+}
+.card h2 {
+  font-size: 15px;
+  text-align: right;
 }
 .card h3 {
   margin: 0;
@@ -152,7 +156,6 @@ nav > ul > div > li > ul > li > a {
   color: #1f3861;
   display: block;
   padding: 10px 15px;
-  margin-bottom: 7px;
 }
 .Employee-details {
   text-align: right;
@@ -222,6 +225,9 @@ nav > ul > div > li > ul > li > a {
   table thead tr th,
   table tbody tr td {
     padding: 8px;
+  }
+  table td {
+    text-align: left !important;
   }
 }
 @media screen and (max-width: 767px) {
