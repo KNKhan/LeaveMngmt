@@ -63,7 +63,7 @@ class LeaveSummary extends React.Component {
           <div className="card">
             <div className="caption bg-blue01">P</div>
             <h3>Privilege Leave</h3>
-            <p>
+            <p style={{ color: this.state.availableLeaves.privilegeLeave < 5 ? 'red' : this.state.availableLeaves.privilegeLeave >= 10 ? 'green' : 'orange' }}>
               {this.state.availableLeaves
                 ? this.state.availableLeaves.privilegeLeave
                 : ""}
@@ -72,7 +72,7 @@ class LeaveSummary extends React.Component {
           <div className="card">
             <div className="caption bg-yellow01">C</div>
             <h3>Casual Leave</h3>
-            <p>
+            <p style={{ color: this.state.availableLeaves.casualLeave < 5 ? 'red' : this.state.availableLeaves.casualLeave >= 10 ? 'green' : 'orange' }}>
               {this.state.availableLeaves
                 ? this.state.availableLeaves.casualLeave
                 : ""}
@@ -81,7 +81,7 @@ class LeaveSummary extends React.Component {
           <div className="card">
             <div className="caption bg-blue02">F</div>
             <h3>Floating Holiday</h3>
-            <p>
+            <p style={{ color: this.state.availableLeaves.floatingHoliday < 5 ? 'red' : this.state.availableLeaves.floatingHoliday >= 10 ? 'green' : 'orange' }}>
               {this.state.availableLeaves
                 ? this.state.availableLeaves.floatingHoliday
                 : ""}
@@ -90,7 +90,7 @@ class LeaveSummary extends React.Component {
           <div className="card">
             <div className="caption bg-red01">S</div>
             <h3>Sick Leave</h3>
-            <p>
+            <p style={{ color: this.state.availableLeaves.sickLeave < 5 ? 'red' : this.state.availableLeaves.sickLeave >= 10 ? 'green' : 'orange' }}>
               {this.state.availableLeaves
                 ? this.state.availableLeaves.sickLeave
                 : ""}
@@ -102,46 +102,44 @@ class LeaveSummary extends React.Component {
         <div className="card-row">
           <div className="card card-table-body">
             <h3 className="text-left">Applied Leave(s) <span className="card-plus-icon">+</span></h3>
-            <div className="heightScroll">
-              <table className="text-center card-table-section">
-                <thead>
-                  <tr>
-                    <th>Leave Type</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <th>From Session</th>
-                    <th>To Session</th>
-                    <th>From Time</th>
-                    <th>To Time</th>
-                    <th>Applied Day(s)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.appliedList
-                    ? this.state.appliedList.map((cellData, index) => (
-                        <tr key={index}>
-                          <td>
-                            {cellData.leaveTypeDesc
-                              ? cellData.leaveTypeDesc
-                              : "-"}
-                          </td>
-                          <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
-                          <td>{cellData.toDate ? cellData.toDate : "-"}</td>
-                          <td>
-                            {cellData.fromSession ? cellData.fromSession : "-"}
-                          </td>
-                          <td>{cellData.toSession ? cellData.toSession : "-"}</td>
-                          <td>{cellData.fromTime ? cellData.fromTime : "-"}</td>
-                          <td>{cellData.toTime ? cellData.toTime : "-"}</td>
-                          <td>
-                            {cellData.reqLeaveUnit ? cellData.reqLeaveUnit : "-"}
-                          </td>
-                        </tr>
-                      ))
-                    : ""}
-                </tbody>              
+            <table className="text-center card-table-section">
+              <thead>
+                <tr>
+                  <th>Leave Type</th>
+                  <th>From Date</th>
+                  <th>To Date</th>
+                  <th>From Session</th>
+                  <th>To Session</th>
+                  <th>From Time</th>
+                  <th>To Time</th>
+                  <th>Applied Day(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.appliedList
+                  ? this.state.appliedList.map((cellData, index) => (
+                    <tr key={index}>
+                      <td>
+                        {cellData.leaveTypeDesc
+                          ? cellData.leaveTypeDesc
+                          : "-"}
+                      </td>
+                      <td>{cellData.fromDate ? cellData.fromDate : "-"}</td>
+                      <td>{cellData.toDate ? cellData.toDate : "-"}</td>
+                      <td>
+                        {cellData.fromSession ? cellData.fromSession : "-"}
+                      </td>
+                      <td>{cellData.toSession ? cellData.toSession : "-"}</td>
+                      <td>{cellData.fromTime ? cellData.fromTime : "-"}</td>
+                      <td>{cellData.toTime ? cellData.toTime : "-"}</td>
+                      <td>
+                        {cellData.reqLeaveUnit ? cellData.reqLeaveUnit : "-"}
+                      </td>
+                    </tr>
+                  ))
+                  : ""}
+              </tbody>
             </table>
-          </div>
           </div>
           <div className="card">
             <h3 className="text-left">Balance Leave(s)</h3>
@@ -149,8 +147,8 @@ class LeaveSummary extends React.Component {
               <option>All</option>
               {this.state.leavetypeList
                 ? this.state.leavetypeList.map((item, index) => (
-                    <option key={index}>{item.leaveTypeLongDesc}</option>
-                  ))
+                  <option key={index}>{item.leaveTypeLongDesc}</option>
+                ))
                 : ""}
             </select>
 

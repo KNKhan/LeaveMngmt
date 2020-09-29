@@ -73,10 +73,16 @@ class Login extends React.Component {
 
     handleUserNameChange = (e) => {
         this.cookies.set('userName', e.currentTarget.value);
-        if (e.currentTarget.value === 'khadar.a')
+        if (e.currentTarget.value === 'revathi.g') {
             this.cookies.set('userType', 'employee');
-        else if (e.currentTarget.value === 'viji.c')
+            this.cookies.set('empCode', 2269);
+            this.cookies.set('userFullName', 'Revathi G');
+        }
+        else if (e.currentTarget.value === 'maramveera.r') {
             this.cookies.set('userType', 'manager');
+            this.cookies.set('empCode', 2627);
+            this.cookies.set('userFullName', 'Maram Veera Raghavulu');
+        }
     };
 
     handlePasswordChange = (e) => {

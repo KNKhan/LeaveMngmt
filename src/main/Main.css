@@ -130,23 +130,28 @@ select {
 nav h3 {
   color: #3d6fcc;
 }
+
+nav {
+  overflow-y: auto;
+}
+
 nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-nav  ul  li {
+nav > ul > div > li {
   cursor: pointer;
   padding: 10px 15px;
   margin-bottom: 0px;
   color: #1f3861;
 }
-nav  ul  li  ul  li  a.active {
+nav > ul > div > li > ul > li > a.active {
   border-left: solid 2px #4e87e4;
   background: #eaf0fb;
 }
 /* LM-UI */
-nav  ul  li  ul  li  a {
+nav > ul > div > li > ul > li > a {
   text-decoration: none;
   color: #1f3861;
   display: block;
@@ -169,20 +174,22 @@ nav  ul  li  ul  li  a {
   font-size: 20px;
   margin-top: -5px;
 }
-.logo{
+.logo {
   text-align: center;
   padding: 10px;
 }
-.logo img{
+.logo img {
   width: 150px;
 }
-.user-details{
-  padding-top: 20px;
+.user-details {
+  padding: 20px;
+  text-align: center;
 }
-.user-name, .user-emp-id{
+.user-name,
+.user-emp-id {
   padding: 10px 0px;
 }
-.user-img{
+.user-img {
   width: 50px;
   height: 50px;
   border: 1px solid #4e87e4;
@@ -190,23 +197,17 @@ nav  ul  li  ul  li  a {
   border-radius: 50%;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
 }
-.user-img-mobile{
+.user-img-mobile {
   display: none;
 }
-.close-icon{
+.close-icon {
   display: none;
 }
-.heightScroll {
-  height: 300px;
-  overflow-y: auto;
-}
-
-
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
   .logo img {
     width: 100%;
-}
-  .container > .card{
+  }
+  .container > .card {
     margin: 0;
   }
   .card {
@@ -221,18 +222,19 @@ nav  ul  li  ul  li  a {
   .card-row .card:last-child {
     margin-right: 0px;
   }
-  table thead tr th, table tbody tr td {
+  table thead tr th,
+  table tbody tr td {
     padding: 8px;
   }
   table td {
     text-align: left !important;
   }
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 767px) {
   .logo img {
     width: 150px;
   }
-  .logo{
+  .logo {
     text-align: left;
     position: fixed;
     width: 100%;
@@ -243,20 +245,20 @@ nav  ul  li  ul  li  a {
     background: white;
     box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
   }
-  .user-img-mobile{
+  .user-img-mobile {
     display: inline-block;
-    width: 35px;
+    width: 35px !important;
     height: 35px;
     border: 1px solid #4e87e4;
     border-radius: 50%;
     float: right;
     margin-right: 30px;
   }
-  .user-details{
+  .user-details {
     display: none;
   }
   nav {
-    position: unset; 
+    position: unset;
     width: 100%;
     height: auto;
   }
@@ -265,35 +267,35 @@ nav  ul  li  ul  li  a {
     float: none;
     padding: 15px;
   }
-  .card-table-body{
+  .card-table-body {
     overflow-x: auto;
   }
-  .card-table-section{
+  .card-table-section {
     table-layout: fixed;
     width: 500px;
   }
-  .hamburger-icon::before{
-    content:'\2630';
+  .hamburger-icon::before {
+    content: "\2630";
     position: absolute;
     float: right;
     right: 20px;
     padding-top: 8px;
     font-size: 20px;
   }
-  .side-nav-mobile{
+  .side-nav-mobile {
     display: none;
     width: 100%;
     height: 100%;
-    background:white;
+    background: white;
     z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
   }
-  .side-nav-mobile.active{
+  .side-nav-mobile.active {
     display: block;
   }
-  .close-icon{
+  .close-icon {
     display: inline-block;
     float: right;
     border: 1px solid gray;
