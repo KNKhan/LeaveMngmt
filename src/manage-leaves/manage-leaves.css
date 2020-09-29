@@ -89,3 +89,7 @@ button.btn.btn-primary.create-btn:hover{
     background: #214479!important;
     color: silver!important;    
 }
+
+.btn-margin{
+    margin:0 5px;
+}

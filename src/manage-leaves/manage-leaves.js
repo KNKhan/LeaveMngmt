@@ -6,10 +6,12 @@ import addNotification from 'react-push-notification';
 import './manage-leaves.css';
 import Breadcrumb from '../breadcrumb/Breadcrumb';
 import Footer from '../footer/Footer';
+import Cookies from 'universal-cookie';
 
 class ManageLeaves extends React.Component {
     constructor(props) {
         super(props);
+        let cookies = new Cookies();
         this.state = {
             breadcrumb: 'Manage Leaves',
             isCreateClicked: false,
@@ -27,7 +29,7 @@ class ManageLeaves extends React.Component {
             appliedLeaves: [],
             appNumber: 0,
             appStatus: '',
-            employeeName: '',
+            employeeName: cookies.get('userFullName'),
             fromSession: '',
             toSession: '',
             appliedDays: 0
@@ -158,10 +160,10 @@ class ManageLeaves extends React.Component {
                                     <td>{cellData.timeTo ? cellData.timeTo : "-"}</td>
                                     <td>{cellData.reqLeaveUnits ? cellData.reqLeaveUnits : "-"}</td>
                                     <td>
-                                        <button className="btn btn-primary" onClick={(e) => this.editLeaveClicked(e, cellData)}>
+                                        <button className="btn btn-primary btn-margin" onClick={(e) => this.editLeaveClicked(e, cellData)}>
                                             <i className="fa fa-pencil"></i>
                                         </button>
-                                        <button className="btn btn-danger" onClick={(e) => this.deleteLeaveClicked(e, cellData)}>
+                                        <button className="btn btn-danger btn-margin" onClick={(e) => this.deleteLeaveClicked(e, cellData)}>
                                             <i className="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -208,7 +210,18 @@ class ManageLeaves extends React.Component {
     };
 
     deleteLeaveClicked = (e, leaveDetails) => {
-
+        let requestBody = {
+            "userName": "REVATHI.G",
+            "empCode": "2269",
+            "empName": "REVATHI G",
+            "appNumber": leaveDetails.leaveAppNumber,
+            "appStatus": leaveDetails.applicationStatus,
+            "supervisor": "MARAMVEERA.R",
+            "leaveTypeCode": leaveDetails.leaveTypeCode,
+            "balanceUnit": this.state.balanceUnits.toFixed(2)
+        };
+        axios.post('http://192.168.20.151:8080/oneprodapterp/leavedelete', requestBody)
+            .then(res => console.log(res));
     };
 
     handleLeaveTypeChange = (e, leaveTypeCode = '') => {
@@ -303,7 +316,15 @@ class ManageLeaves extends React.Component {
                 "holidayWorkedDate": "01/01/1900"
             };
             axios.post('http://192.168.20.151:8080/oneprodapterp/leaveupdate', requestBody)
-                .then(res => console.log(res.data));
+                .then(res => {
+                    addNotification({
+                        title: 'Leave Request Updated',
+                        subtitle: requestBody.leaveFrom - requestBody.leaveTo,
+                        message: 'Your request for leave has been updated & submitted to your manager for approval.',
+                        theme: 'green',
+                        native: true
+                    });
+                });
         }
     };
 
